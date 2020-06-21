@@ -1,5 +1,5 @@
 import UIKit
-
+//https://www.journaldev.com/19619/swift-memory-management-automatic-reference-counting
 
 //class Person{
 //    var name:String
@@ -46,6 +46,7 @@ class Student{
 class Phone {
     
     var phoneName:String
+    //var owner:Student? //strongly reference to Student
     weak var owner:Student?
     
     init(phoneName:String, owner:Student?) {
