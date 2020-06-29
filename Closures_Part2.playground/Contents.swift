@@ -26,30 +26,32 @@ printGoodMorningMessage(isMorning: true, name: assignName(name: "Maruf"))
 //printGoodMorningMessage(isMorning: false, name: assignName(name: "appQube"))
 
 
-//part 2
+// ******************   part 2 ****************************
 
 // no need to define parameter type again inside the closure parameter list
 // since we already inform the compiler the type of the function explicitly
 // (Data?, URLResponse?, Error?) -> Void
 // compiler will know data is Data? type, response is URLResponse? type and error is Error? type
 // according to order
-let dataTaskClosure : (Data?, URLResponse?, Error?) -> Void = { data, response, error in
-    guard error == nil else {
-        print ("error: \(error!)")
-        return
-    }
-            
-    guard let content = data,
-    let json = (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
-        print("Not containing JSON")
-        return
-    }
-}
+
+
+//let dataTaskClosure : (Data?, URLResponse?, Error?) -> Void = { data, response, error in
+//    guard error == nil else {
+//        print ("error: \(error!)")
+//        return
+//    }
+//
+//    guard let content = data,
+//    let json = (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
+//        print("Not containing JSON")
+//        return
+//    }
+//}
         
 //let networkTask = URLSession.shared.dataTask(with: url, completionHandler: dataTaskClosure)
 
 
-//  part 3
+//  ****************  part 3 ***************
 
 
 // similar to above, since completionHandler parameter expects (Data?, URLResponse?, Error?) -> Void type
@@ -63,6 +65,23 @@ let dataTaskClosure : (Data?, URLResponse?, Error?) -> Void = { data, response, 
 //        return
 //    }
 //            
+//    guard let content = data,
+//    let json = (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
+//        print("Not containing JSON")
+//        return
+//    }
+//})
+
+//  part 4 ********************************************
+
+// notice we have removed 'completionHandler' parameter name
+// and placed the closure directly after the function ends: (with: url){...}
+//let networkTask = URLSession.shared.dataTask(with: url){ data, response, error in
+//    guard error == nil else {
+//        print ("error: \(error!)")
+//        return
+//    }
+//
 //    guard let content = data,
 //    let json = (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String: Any] else {
 //        print("Not containing JSON")
