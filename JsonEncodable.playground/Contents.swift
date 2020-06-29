@@ -32,10 +32,11 @@ func requestServerwithPost(){
     var urlRequest = URLRequest(url: url)
     
     
-    // segment 2 this is what i need!!! using Encodable
+    // segment 2
     let requestModel = UserRegister(name:"abdullah", salary:"5000", age: "28")
     
     do {
+        //this is what i need!!! using Encodable myModel -> json
         let requestBody = try JSONEncoder().encode(requestModel)
         //segment 3
         urlRequest.httpMethod = "post"
