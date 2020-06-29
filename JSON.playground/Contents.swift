@@ -13,7 +13,7 @@ struct BlogPost: Decodable {
     enum Category: String, Decodable {
         case swift, combine, debugging, xcode
     }
-    
+
     let title: String
     let url: URL
     let category: Category
@@ -47,18 +47,18 @@ let myjson = """
 
 func readJson(){
     do {
-        
+
         //convert into data bytes
         guard let jsonData = myjson.data(using: String.Encoding.utf8) else {
             fatalError("couldn't encode string as UTF-8")
         }
-        
+
         //data to jsonObject
         // Convert JSON from NSData to AnyObject
         let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
         //print(jsonObject)
-        
-        
+
+
         //jsonObject into Dictionary
         if let dictionary = jsonObject as? [String:Any]{
             if let nameofStudent = dictionary["name"] as? String{
@@ -66,22 +66,104 @@ func readJson(){
             }
             guard let studentofGraduation = dictionary["student"] as? String else{return}
             print(studentofGraduation)
-            
+
             guard let totalProject = dictionary["project"]else {return}
             //print((totalProject as AnyObject))
             guard let totalProjectCounter = ((totalProject as AnyObject).count) else{return}
             print(totalProjectCounter)
-        
+            
+
         }//end of dictionary block
-        
-       
+
+
     } catch {
         print("error reading JSON: \(error)")
-        
+
     }
 }
 
 
 
-readJson()
+//readJson()
+//
+//let json = """
+//{
+//"name":"Muhammad",
+//"student":"CSE",
+//"project":
+//    [
+//        {
+//        "id": "1",
+//        "pname":"iOS"
+//        },
+//        {
+//        "id": "2",
+//        "pname":"Django"
+//        }
+//    ]
+//}
+//"""
+//
+//
+//extension String {
+//    func convertToDictionary() -> [String: Any]? {
+//        if let data = data(using: .utf8) {
+//            return try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+//        }
+//        return nil
+//    }
+//}
+//
+//
+//if let jsonDict = json.convertToDictionary() {
+//
+//    if let item1 = (jsonDict["project"] as? [[String: Any ]])? [ 0 ] {
+//        print(item1)
+//    }
+//    if let item2 = (jsonDict["project"] as? [[String: Any ]])? [ 1 ] {
+//        print(item2)
+//    }
+//}
 
+let my_json = """
+{
+"name":"Muhammad",
+"student":"CSE",
+"project":
+    [
+        {
+        "id": "1",
+        "pname":"iOS"
+        },
+        {
+        "id": "2",
+        "pname":"Django"
+        }
+    ]
+}
+"""
+
+
+extension String {
+    func convertToDictionary() -> [String: Any]? {
+        if let data = data(using: .utf8) {
+            return try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+        }
+        return nil
+    }
+}
+
+
+if let jsonDict = my_json.convertToDictionary() {
+
+    for (key, _) in jsonDict {
+        
+        if let items = (jsonDict[key] as? [[String: Any]]) {
+                
+            for subKey in items {
+
+                print(subKey["pname"]!)
+            }
+        }
+    }
+}
