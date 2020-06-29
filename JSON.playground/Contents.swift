@@ -85,19 +85,3 @@ func readJson(){
 
 readJson()
 
-
-
-
-//writing json
-
-
-
-//    do {
-//    // Convert object to JSON as NSData
-//    let jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: [])
-//    print("JSON data: \(jsonData)")
-//    // Convert NSData to String
-//    let jsonString = String(data: jsonData, encoding: .utf8)!
-//    print("JSON string: \(jsonString)") } catch {
-//        print("error writing JSON: \(error)") }
-//}
