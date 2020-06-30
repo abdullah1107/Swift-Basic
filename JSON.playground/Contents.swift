@@ -167,3 +167,52 @@ if let jsonDict = my_json.convertToDictionary() {
         }
     }
 }
+
+// json
+let successJsonData = """
+{
+    "success": true,
+    "data": {
+        "name": "mamun",
+        "email": "infinityflow1107@gmail.com"
+    },
+    "errorMessage": "no error",
+    "code": 200
+}
+
+""".data(using: .utf8)
+
+
+
+let failureJsonData = """
+
+{
+    "success": false,
+    "data": "some error occured",
+    "errorMessage": "Invalid credentials",
+    "code": 401
+}
+
+""".data(using: .utf8)
+
+
+struct UserResponse: Decodable {
+    let success: Bool?
+    let data: User?
+    let message: String?
+    let code: Int?
+}
+
+// MARK: - User
+struct User: Decodable {
+    let name, email: String?
+}
+
+do {
+
+    let result = try JSONDecoder().decode(UserResponse.self, from: successJsonData!)
+    debugPrint(result.data?.email ?? "")
+
+} catch let error {
+    debugPrint(error)
+}
