@@ -61,3 +61,26 @@ func compareAandB<T: Equatable>(a:T, b:T){
 compareAandB(a: 2, b: 3)
 compareAandB(a: "Hi", b: "Hi")
 //can be used extention Generic
+
+
+class MyGenericClass<T>{
+    var value:T
+    
+    init(value:T) {
+        self.value = value
+    }
+    
+    func getValue() ->T{
+        return self.value
+    }
+    
+    func setValue(value:T) {
+        self.value = value
+    }
+}
+
+let genericClassStirng = MyGenericClass<String>(value: "My String Value")
+let genericClassInt    = MyGenericClass<Int>(value: 54)
+
+print(genericClassStirng.getValue())
+print(genericClassInt.getValue())
